@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Puzzle Designer</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .puzzle-container {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      text-align: center;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .puzzle {
+      font-size: 18px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+    .response-area {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #0056b3;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="puzzle-container">
+    <h1>AI Puzzle Designer</h1>
+    <div class="puzzle" id="puzzle">Welcome, puzzle solver! Ready for your first challenge?</div>
+    <div class="response-area" id="response"></div>
+    <button class="button" onclick="nextPuzzle()">Next Puzzle</button>
+    <div class="footer">Powered by AI Puzzle Generator</div>
+  </div>
+
+  <script>
+    // List of puzzles with their solutions
+    const puzzles = [
+      {
+        puzzle: "What is 25 + 17?",
+        solution: "42"
+      },
+      {
+        puzzle: "I am an odd number. Take away one letter, and I become even. What number am I?",
+        solution: "Seven"
+      },
+      {
+        puzzle: "What word becomes shorter when you add two letters to it?",
+        solution: "Short"
+      },
+      {
+        puzzle: "How many months have 28 days?",
+        solution: "All of them"
+      },
+      {
+        puzzle: "What is the next number in the sequence: 2, 6, 12, 20, ?",
+        solution: "30"
+      }
+    ];
+
+    let currentPuzzleIndex = 0;
+
+    function nextPuzzle() {
+      const puzzleElement = document.getElementById('puzzle');
+      const responseElement = document.getElementById('response');
+      const buttonElement = document.querySelector('.button');
+      
+      // Get the current puzzle
+      const currentPuzzle = puzzles[currentPuzzleIndex];
+      
+      // Display the puzzle
+      puzzleElement.textContent = currentPuzzle.puzzle;
+      responseElement.textContent = 'Can you solve it?';
+
+      // Provide solution once the puzzle is solved
+      setTimeout(() => {
+        responseElement.innerHTML = `The solution is: <strong>${currentPuzzle.solution}</strong>`;
+      }, 3000); // Show the solution after 3 seconds
+
+      // Move to the next puzzle, or loop back to the start if at the end
+      currentPuzzleIndex = (currentPuzzleIndex + 1) % puzzles.length;
+    }
+
+    // Initialize the first puzzle
+    nextPuzzle();
+  </script>
+
+</body>
+</html>
